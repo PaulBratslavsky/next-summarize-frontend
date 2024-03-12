@@ -47,7 +47,7 @@ async function getSummary(content: string) {
   return summary;
 }
 
-async function saveSummary(payload: {
+async function createSummary(payload: {
   data: {
     videoId: string;
     summary: string;
@@ -134,7 +134,7 @@ export async function POST(req: NextRequest) {
       },
     };
 
-    const response = await saveSummary(payload);
+    const response = await createSummary(payload);
     console.log(response);
 
     return new Response(JSON.stringify({ data: response.data, error: null }), {
