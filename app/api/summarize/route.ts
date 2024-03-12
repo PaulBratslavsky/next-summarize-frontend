@@ -3,6 +3,8 @@ import { getUserMeLoader } from "@/data/services/get-user-me-loader";
 import { getStrapiURL } from "@/lib/utils";
 import { getAuthToken } from "@/data/services/get-token";
 
+
+
 async function getTranscript(id: string) {
   try {
     return await YoutubeTranscript.fetchTranscript(id);
