@@ -26,12 +26,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-<<<<<<< HEAD
-=======
 # env files
 .env
 
->>>>>>> 747fa0d0441a2a5a03031735dbbf96981e714296
 # vercel
 .vercel
 
