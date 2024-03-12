@@ -10,7 +10,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'meaningful-melody-7b98e28220.media.strapiapp.com',
+        hostname: 'calm-animal-441e5f296f.strapiapp.com',
       },
     ],
   },
