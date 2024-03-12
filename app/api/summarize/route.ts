@@ -45,7 +45,7 @@ async function getSummary(content: string) {
   return summary;
 }
 
-export async function saveSummary(payload: {
+async function saveSummary(payload: {
   data: {
     videoId: string;
     summary: string;
