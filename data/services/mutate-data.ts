@@ -19,5 +19,6 @@ export async function mutateData(method: string, path: string, payload?: any) {
     return data;
   } catch (error) {
     console.log("error", error);
+    throw error;
   }
 }

@@ -24,7 +24,7 @@ export default function Error({
         <p className="text-lg text-gray-700 dark:text-gray-300">
           We're sorry, but we can't find the page you're looking for.
         </p>
-        <pre>{error.message}</pre>
+        <p>{error.message}</p>
         <Button
           className="inline-flex h-10 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
           onClick={() => reset()}
@@ -35,12 +35,6 @@ export default function Error({
     </div>
   );
 }
-
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/fHWTzUwCBem
- */
-import Link from "next/link";
 
 function BugIcon({ className }: { className?: string }) {
   return (

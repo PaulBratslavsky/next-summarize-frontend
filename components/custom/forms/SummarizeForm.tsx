@@ -3,10 +3,9 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { SubmitButton } from "@/components/custom/buttons/SubmitButton";
-import { toast } from "sonner"
-
-import { createSummaryAction } from "@/data/actions/summary-actions";
-import { generateSummaryService } from "@/data/services/generate-summary-service";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { generateSummaryService } from "@/data/services/summary-service";
 import { cn, extractYouTubeID } from "@/lib/utils";
 
 interface StrapiErrorsProps {
@@ -15,28 +14,19 @@ interface StrapiErrorsProps {
   status: string | null;
 }
 
-interface SummaryFormProps {
-  token: string | undefined;
-}
-
 const INITIAL_STATE = {
   message: null,
   name: "",
   status: null,
 };
 
-  
-export function SummarizeForm({ token }: Readonly<SummaryFormProps>) {
+export function SummarizeForm() {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<StrapiErrorsProps>(INITIAL_STATE);
   const [value, setValue] = useState<string>("");
 
   async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
-    const url = process.env.NEXT_PUBLIC_SUMMARIZE_URL;
-
-    if (url === undefined) throw new Error("No summarize URL found");
-    if (token === undefined) throw new Error("No token found");
-
     setLoading(true);
     toast.success("Creating your summary");
 
@@ -58,35 +48,27 @@ export function SummarizeForm({ token }: Readonly<SummaryFormProps>) {
       return;
     }
 
-    const responseData  = await generateSummaryService(processedVideoId, token);
+    const summaryResponseData = await generateSummaryService(processedVideoId);
 
-    if (!responseData ) {
-      toast.error("Ops! Something went wrong. Please try again later.");
-      setLoading(false);
-      return;
-    }
-
-    if(responseData.error) {
+    console.log(summaryResponseData);
+    
+    if (summaryResponseData.error) {
       setValue("");
-      toast.error(responseData.error.message);
-      setError(responseData.error);
+      toast.error(summaryResponseData.error.message);
+      setError({
+        ...INITIAL_STATE,
+        message: summaryResponseData.error.message,
+        name: "Summary Error",
+      })
       setLoading(false);
       return;
     }
 
-    const payload = {
-      data: {
-        videoId: processedVideoId,
-        summary: responseData.response,
-      },
-    };
-
-
-    await createSummaryAction(payload);
     toast.success("Summary Created!");
 
     setValue("");
     setLoading(false);
+    router.push("/dashboard/summaries/" + summaryResponseData.data.id);
   }
 
   function clearError() {

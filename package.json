@@ -32,7 +32,7 @@
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
     "use-debounce": "^10.0.0",
-    "youtube-transcript": "^1.0.6"
+    "youtube-transcript": "^1.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
