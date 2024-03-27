@@ -71,7 +71,7 @@ export function RegisterUserForm() {
               text="Register"
               loadingText="Loading"
             />
-            <StrapiErrors error={formState.strapiErrors} />
+            <StrapiErrors error={formState?.strapiErrors} />
           </CardFooter>
         </Card>
         <div className="mt-4 text-center text-sm">

@@ -32,7 +32,7 @@ async function getSummary(content: string) {
 
   const model = new ChatOpenAI({
     openAIApiKey: process.env.OPENAI_API_KEY,
-    modelName: process.env.OPENAI_MODEL ?? "gpt-4",
+    modelName: process.env.OPENAI_MODEL ?? "gpt-4-turbo-preview",
     temperature: process.env.OPENAI_TEMPERATURE
       ? parseFloat(process.env.OPENAI_TEMPERATURE)
       : 0.7,
@@ -89,13 +89,16 @@ const TEMPLATE = `
 INSTRUCTIONS: 
   For the this {text} complete the following steps.
   Generate the title for based on the content provided
-  Summarize the following content and include key topics, writing in first person using normal tone of voice.
-  Generate bulleted list of key points and benefits
-  Return possible and best recommended key words
-  Write a blog post based on the content 
+  Summarize the following content and include 5 key topics, writing in first person using normal tone of voice.
+  
+  Write youtube video description
     - Include heading and sections.  
-    - Return in markdown.  
-    - Incorporate keywords and key takeaways in to the blog post.
+    - Incorporate keywords and key takeaways
+
+  Generate bulleted list of key points and benefits
+
+  Return possible and best recommended key words
+
   Write a recommendation section and include 3 to 5 ways I can improve this blog post.
 `;
 

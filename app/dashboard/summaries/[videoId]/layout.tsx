@@ -26,6 +26,7 @@ export default async function VideosRoute({
   ];
 
   const videoId = extractYouTubeID(data.videoId);
+  console.log(videoId);
   if (!data) return <p>No Items Found</p>;
   return (
     <div>
@@ -34,12 +35,7 @@ export default async function VideosRoute({
         <div className="col-span-3">{children}</div>
         <div className="col-span-2">
           <div className="rounded-lg overflow-hidden">
-            <YouTubePlayer
-              key={data.id}
-              playerKey={data.id}
-              id={videoId as string}
-              height="365px"
-            />
+            <YouTubePlayer videoId={videoId} />
           </div>
 
           <Card className="mt-4 p-4">
